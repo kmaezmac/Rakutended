@@ -38,7 +38,7 @@ const rakuten = async () => {
 };
 
 
-app.get("/rakuten", async (req, res) => {
+app.get("/rakuten", async (req, res, next) => {
     try {
         var data = await rakuten();
         console.log(data);
@@ -48,6 +48,7 @@ app.get("/rakuten", async (req, res) => {
           res.send(JSON.stringify(response));
     } catch (err) {
         console.log(err);
+        next(err);
         res.send('エラー');
     }
 });
