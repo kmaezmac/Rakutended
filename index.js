@@ -49,8 +49,8 @@ app.get("/rakuten", (req, res) => {
         );
     } catch (err) {
         console.log(err);
+        res.send('エラー');
     }
-    res.send('get');
 });
 
 
