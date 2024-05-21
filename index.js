@@ -15,7 +15,7 @@ const rakuten = async () => {
     var requestUrl = "https://app.rakuten.co.jp/services/api/IchibaItem/Ranking/20220601?applicationId=" + process.env.RAKUTEN_APP_ID
         + "&age=" + age + "&sex=1&carrier=0&page=" + random + "&affiliateId=" + process.env.RAKUTEN_AFFILIATE_ID;
     console.log(requestUrl);
-    axios.get(requestUrl, {
+    await axios.get(requestUrl, {
     }).then(async (response) => {
         if (response.status !== 201) {
             var randomNo = Math.floor(Math.random() * (response.data.Items.length));
@@ -38,17 +38,13 @@ const rakuten = async () => {
 };
 
 
-app.get("/rakuten", (req, res) => {
+app.get("/rakuten", async (req, res) => {
     try {
-        rakuten().then(
-            function(data){
-                console.log(data)
-                var response = {
-                    tweetText:data
-                  }
-                  res.send(JSON.stringify(response));
-            }
-        );
+        var data = await rakuten();
+        var response = {
+            tweetText:data
+          }
+          res.send(JSON.stringify(response));
     } catch (err) {
         console.log(err);
         res.send('エラー');
