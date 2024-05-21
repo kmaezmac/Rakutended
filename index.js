@@ -25,8 +25,10 @@ const rakuten = async () => {
             console.log(itemName);
             console.log(catchcopy);
             console.log(affiliateUrl);
-            var tweetText = itemName + catchcopy
-            return tweetText.substring(0, 90) + " " + affiliateUrl + " #楽天ROOM #楽天 #楽天市場 #ad #PR";
+            var text = itemName + catchcopy;
+            console.log(text);
+            var tweetText = text.substring(0, 90) + " " + affiliateUrl + " #楽天ROOM #楽天 #楽天市場 #ad #PR";
+            return tweetText;
         }
     }).catch((error) => {
         console.log(error);
@@ -40,6 +42,7 @@ app.get("/rakuten", (req, res) => {
     try {
         rakuten().then(
             function(data){
+                console.log(data)
                 var response = {
                     tweetText:data
                   }
