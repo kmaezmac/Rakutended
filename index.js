@@ -16,7 +16,7 @@ const rakuten = async () => {
         + "&age=" + age + "&sex=1&carrier=0&page=" + random + "&affiliateId=" + process.env.RAKUTEN_AFFILIATE_ID;
     console.log(requestUrl);
     await axios.get(requestUrl, {
-    }).then(async (response) => {
+    }).then((response) => {
         if (response.status !== 201) {
             var randomNo = Math.floor(Math.random() * (response.data.Items.length));
             var itemName = response.data.Items[randomNo].Item.itemName;
@@ -41,6 +41,7 @@ const rakuten = async () => {
 app.get("/rakuten", async (req, res) => {
     try {
         var data = await rakuten();
+        console.log(data);
         var response = {
             tweetText:data
           }
