@@ -23,10 +23,10 @@ const rakuten = async () => {
         }); 
         resp.on('end', () => {
             if (response.status !== 201) {
-                var randomNo = Math.floor(Math.random() * (response.data.Items.length));
-                var itemName = response.data.Items[randomNo].Item.itemName;
-                var catchcopy = response.data.Items[randomNo].Item.catchcopy;
-                var affiliateUrl = response.data.Items[randomNo].Item.affiliateUrl;
+                var randomNo = Math.floor(Math.random() * (response.Items.length));
+                var itemName = response.Items[randomNo].Item.itemName;
+                var catchcopy = response.Items[randomNo].Item.catchcopy;
+                var affiliateUrl = response.Items[randomNo].Item.affiliateUrl;
                 console.log(itemName);
                 console.log(catchcopy);
                 console.log(affiliateUrl);
